@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <!--The header for the dashboard.-->
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <!--The aside for the search bar and buttons.-->
+    <aside>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label for="cityInput">Search for a city:</label>
+                            <input type="text" class="form-control" id="cityInput" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <br>
+                    <div class="btn-group" role="group" aria-label="City Buttons">
+                        <button type="button" class="btn btn-secondary">Salt Lake City</button>
+                        <button type="button" class="btn btn-secondary">Bountiful</button>
+                        <button type="button" class="btn btn-secondary">Farmington</button>
+                        <button type="button" class="btn btn-secondary">Kaysville</button>
+                        <button type="button" class="btn btn-secondary">Layton</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!--The section for the current weather.-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 id="cityName">City</h2>
+                        </div>
+                        <div class="card-body">
+                            <p>Temp: <span id="temperature"></span></p>
+                            <p>Wind: <span id="wind"></span></p>
+                            <p>Humidity: <span id="humidity"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--The section for the 5-day forecast.-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="forecast">
+                    <h2>5-day Forecast:</h2>
+                    <div class="card-deck">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Day 1</h5>
+                                <img src="weather-icon.png" alt="Weather Icon">
+                                <p>Temp: <span class="temp"></span></p>
+                                <p>Wind: <span class="wind"></span></p>
+                                <p>Humidity: <span class="humidity"></span></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Day 2</h5>
+                                <img src="weather-icon.png" alt="Weather Icon">
+                                <p>Temp: <span class="temp"></span></p>
+                                <p>Wind: <span class="wind"></span></p>
+                                <p>Humidity: <span class="humidity"></span></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Day 3</h5>
+                                <img src="weather-icon.png" alt="Weather Icon">
+                                <p>Temp: <span class="temp"></span></p>
+                                <p>Wind: <span class="wind"></span></p>
+                                <p>Humidity: <span class="humidity"></span></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Day 4</h5>
+                                <img src="weather-icon.png" alt="Weather Icon">
+                                <p>Temp: <span class="temp"></span></p>
+                                <p>Wind: <span class="wind"></span></p>
+                                <p>Humidity: <span class="humidity"></span></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Day 5</h5>
+                                <img src="weather-icon.png" alt="Weather Icon">
+                                <p>Temp: <span class="temp"></span></p>
+                                <p>Wind: <span class="wind"></span></p>
+                                <p>Humidity: <span class="humidity"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./assets/js/logic.js"></script>
+</body>
+
+</html>
