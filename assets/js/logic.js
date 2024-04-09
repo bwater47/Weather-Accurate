@@ -13,6 +13,9 @@ let temp;
 let wind;
 let humidity;
 
+// Where we call the const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`; to get the data from the API
+// Yes when variables are assigned we will click the search button and the event listener will be triggered  and the function will call the variables to be displayed spliced concatted.
+// fetch Response then 'then' data 'then' event
 // Here we are building the URL we need to query the database
 // {
 //     "id": 5771826,
