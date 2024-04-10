@@ -5,6 +5,18 @@
 // API key for OpenWeatherMap although API is randomly generated
 const APIKey = "dd699e84055222330cd4dae0d505a590";
 
+
+const queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+fetch(queryURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    });
+
+// city Search
+// search History
 let search;
 let city;
 let country;
