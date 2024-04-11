@@ -53,11 +53,11 @@ function getWeatherData(city) {
       // Render after page reload
       displaySavedCities(); // Displays the past searches
       // Display the array of data on the page
-      displayCurrentDayData(data.list[0], city); // This is the current day
+      displayDailyForecastData(data.list[0], city); // This is the current day
 
       // Set the current city name and data to local storage
-      localStorage.setItem("currentCityName", city);
-      localStorage.setItem("currentDayData", JSON.stringify(data.list[0]));
+      localStorage.setItem("CityName", city);
+      localStorage.setItem("DailyForecastData", JSON.stringify(data.list[0]));
     });
 }
 // Function to display the weather data for the city
@@ -65,6 +65,11 @@ function displayWeatherData(data) {
   // Get ids and set text content
   document.getElementById("temp1").textContent = data[0].temp;
   console.log(data[0].temp);
+  document.getElementById("wind1").textContent = data[0].wind;
+  console.log(data[0].wind);
+  document.getElementById("humidity1").textContent = data[0].humidity;
+  console.log(data[0].humidity);
+  displayWeatherData(data);
 }
 
 // Function to display the current day data
@@ -75,7 +80,7 @@ function saveCity(city) {
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
   }
 }
-
+// Function to display the saved cities on the page in the search history
 function displaySavedCities() {
   const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
 }
