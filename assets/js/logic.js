@@ -103,11 +103,11 @@ function displaySavedCities() {
 }
 
 // Get the data from the API
-function getDailyData(city) {
+function getDailyForecast(city) {
   // API Key which allows us to make request to the server.
-  const fiveDayURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+  const dailyDayURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
   // Fetch the data from the API
-  fetch(fiveDayURL)
+  fetch(dailyDayURL)
     // Check if the response is ok
     .then(function (response) {
       if (!response.ok) {
