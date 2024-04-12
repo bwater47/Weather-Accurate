@@ -30,11 +30,11 @@ N/A
 Contributing is allowed if you're in the U of U Coding Bootcamp. Contact me on the slack channel for information.
 
 ## Authors and acknowledgment
-Bootcamp Spot. (04/04/2024). https://bootcampspot.com/
+Bootcamp Spot. (04/11/2024). https://bootcampspot.com/
 
-W3Schools Online Web Tutorials. (04/04/2024). https://www.w3schools.com/ 
+W3Schools Online Web Tutorials. (04/11/2024). https://www.w3schools.com/ 
 
-Chatgpt. ChatGPT. (04/04/2024). https://openai.com/chatgpt
+Chatgpt. ChatGPT. (04/11/2024). https://openai.com/chatgpt
 
 • Please note: While ChatGPT was utilized to generate dialog content for the README file, it was not involved in the generation of any code, HTML edits, CSS edits, or other assets within the repository apart from this README specifically.
 

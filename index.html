@@ -29,8 +29,8 @@
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                     <br>
-                    <div class="btn-group" role="group" aria-label="City Buttons">
-                        <button type="button" class="btn btn-secondary">Salt Lake City</button>
+                    <div class="btn-group savedCities" role="group" aria-label="City Buttons">
+                        <button style="display: none" type="button" class="btn btn-secondary"></button>
                     </div>
                 </div>
             </div>
@@ -43,12 +43,12 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h2 id="cityName">City</h2>
+                            <h2 id="dailyName">City</h2>
                         </div>
                         <div class="card-body" id="dailyForecast">
-                            <p>Temp: <span id="temperature"></span></p>
-                            <p>Wind: <span id="windspeed"></span></p>
-                            <p>Humidity: <span id="humiditynumber"></span></p>
+                            <p>Temp🌡️: <span id="temperature"></span></p>
+                            <p>Wind💨: <span id="windspeed"></span></p>
+                            <p>Humidity💦: <span id="humiditynumber"></span></p>
                         </div>
                     </div>
                 </div>
@@ -65,26 +65,26 @@
                         <div class="card-deck">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Day 1</h5>
-                                    <img src="weather-icon.png" alt="Weather Icon">
+                                    <h5 class="card-title" id="date1">Date 1</h5>
+                                    <img src="" id="icon1">
                                     <p>Temp🌡️: <span id="temp1" class="temp"></span></p>
-                                    <p>Wind💨: <span id="wind1"class="wind"></span></p>
+                                    <p>Wind💨: <span id="wind1" class="wind"></span></p>
                                     <p>Humidity💦: <span id="humidity1" class="humidity"></span></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Day 2</h5>
-                                    <img src="weather-icon.png" alt="Weather Icon">
+                                    <h5 class="card-title" id="date2">Date 2</h5>
+                                    <img src="" id="icon2">
                                     <p>Temp🌡️: <span id="temp2" class="temp"></span></p>
-                                    <p>Wind💨: <span id="wind2"class="wind"></span></p>
+                                    <p>Wind💨: <span id="wind2" class="wind"></span></p>
                                     <p>Humidity💦: <span id="humidity2" class="humidity"></span></p>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Day 3</h5>
-                                    <img src="weather-icon.png" alt="Weather Icon">
+                                    <h5 class="card-title" id="date3">Date 3</h5>
+                                    <img src="" id="icon3">
                                     <p>Temp🌡️: <span id="temp3" class="temp"></span></p>
                                     <p>Wind💨: <span id="wind3" class="wind"></span></p>
                                     <p>Humidity💦: <span id="humidity3" class="humidity"></span></p>
@@ -92,8 +92,8 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Day 4</h5>
-                                    <img src="weather-icon.png" alt="Weather Icon">
+                                    <h5 class="card-title" id="date4">Date 4</h5>
+                                    <img src="" id="icon4">
                                     <p>Temp🌡️: <span id="temp4" class="temp"></span></p>
                                     <p>Wind💨: <span id="wind4" class="wind"></span></p>
                                     <p>Humidity💦: <span id="humidity4" class="humidity"></span></p>
@@ -101,8 +101,8 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Day 5</h5>
-                                    <img src="weather-icon.png" alt="Weather Icon">
+                                    <h5 class="card-title" id="date5">Date 5</h5>
+                                    <img src="" id="icon5">
                                     <p>Temp🌡️: <span id="temp5" class="temp"></span></p>
                                     <p>Wind💨: <span id="wind5" class="wind"></span></p>
                                     <p>Humidity💦: <span id="humidity5" class="humidity"></span></p>
