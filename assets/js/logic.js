@@ -42,6 +42,7 @@ function getWeatherData(city) {
     // Display the data in console
     .then(function (data) {
       // make variables for the lat and lon from the data and run a second fetch to get the 5 day forecast using the lat and lon
+      // create query url for the 5 day forecast
       // Move the function below into the second fetch
       displayFiveDayForecast(data);
       // Save the city to local storage so it persists on page reload
@@ -60,19 +61,19 @@ function getWeatherData(city) {
 // Function to display the weather data for the city
 function displayFiveDayForecast(data) {
   // Get ids and set content for the 5 day forecast
-  document.getElementById("date1").textContent = new Date(
-    data.dt * 1000
-  ).toLocaleDateString();
-  document.getElementById(
-    "icon1"
-  ).src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-  document.getElementById("temp1").textContent = data.main.temp;
-  document.getElementById("wind1").textContent = data.wind.speed;
-  document.getElementById("humidity1").textContent = data.main.humidity;
   // For loop to display the 5 day forecast
-  // for (let index = 0; index < array.length; index++) {
-  //   const element = array[index];
-  // }
+  for (let i = 0; i < data.length; i++) {
+    document.getElementById("date1").textContent[i] = new Date(
+      data.dt * 1000
+    ).toLocaleDateString();
+    document.getElementById(
+      "icon1"
+    ).src = `http://openweathermap.org/img/w/${data.weather[i].icon}.png`;
+    document.getElementById("temp1").textContent[i] = data.main.temp;
+    document.getElementById("wind1").textContent[i] = data.wind.speed;
+    document.getElementById("humidity1").textContent[i] = data.main.humidity;
+    // console.log(data);
+  }
 }
 
 // Function to display the current day data
@@ -143,5 +144,24 @@ function displayDailyForecast(data, city) {
   document.getElementById("temperature").textContent = data.main.temp;
   document.getElementById("windspeed").textContent = data.wind.speed;
   document.getElementById("humiditynumber").textContent = data.main.humidity;
-  localStorage.setItem("data")
+  // localStorage.setItem("data")
+}
+
+// Get details from lat and lon make variables
+function getFiveDayForecast(lat, lon){
+  const fiveDayURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+  fetch(fiveDayURL)
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(data){
+    console.log(data);
+    localStorage.setItem("fiveDayData", JSON.stringify(data));
+  })
+  .catch(function(error){
+    console.log(
+      "There has been a problem with your fetch operation: ",
+      error.message
+    );
+  });
 }
