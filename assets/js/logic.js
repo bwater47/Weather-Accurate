@@ -40,6 +40,7 @@ function getWeatherData(city) {
     })
     // Display the data in console
     .then(function (data) {
+      console.log(data);
       // Save the searched city to the past searches local storage array
       saveCity(city);
       // Render after page reload
@@ -47,6 +48,7 @@ function getWeatherData(city) {
       // Display the current weather data
       displayDailyForecast(data, city);
       // Set the current city name and data to local storage
+      getFiveDayForecast(data.coord.lat, data.coord.lon);
       localStorage.setItem("cityName", city);
       localStorage.setItem("currentData", JSON.stringify(data));
     });
@@ -119,7 +121,7 @@ function displayDailyForecast(data, city) {
   ).innerHTML = `${city} (${date}) <img src="${iconUrl}">`;
   document.getElementById("temperature").textContent = data.main.temp;
   document.getElementById("windspeed").textContent = data.wind.speed;
-  document.getElementById("humiditynumber").textContent = data.main.humidity;
+  document.getElementById("humiditydaily").textContent = data.main.humidity;
 }
 
 // Get details from lat and lon make variables
@@ -133,26 +135,30 @@ function getFiveDayForecast(lat, lon) {
       displayFiveDayForecast(data);
       localStorage.setItem("fiveDayData", JSON.stringify(data));
     })
-    .catch(function (error) {
-      console.log(
-        "There has been a problem with your fetch operation: ",
-        error.message
-      );
-    });
+    // .catch(function (error) {
+    //   console.log(
+    //     "There has been a problem with your fetch operation: ",
+    //     error.message
+    //   );
+    // });
 }
 // Function to display the weather data for the city
 function displayFiveDayForecast(data) {
   // Get ids and set content for the 5 day forecast
+  console.log(data);
   // For loop to display the 5 day forecast
-  for (let i = 0; i < data.length; i++) {
-    document.getElementById("date1").textContent[i] = new Date(
-      data.dt * 1000
-    ).toLocaleDateString();
-    document.getElementById(
-      "icon1"
-    ).src = `http://openweathermap.org/img/w/${data.weather[i].icon}.png`;
-    document.getElementById("temp1").textContent[i] = data.main.temp;
-    document.getElementById("wind1").textContent[i] = data.wind.speed;
-    document.getElementById("humidity1").textContent[i] = data.main.humidity;
+  for (let i = 0; i < 5; i++) {
+    // const date = new Date(data[i].dt * 1000).toLocaleDateString();
+    // const iconUrl = `http://openweathermap.org/img/w/${data[i].list.weather[0].icon}.png`;
+    // const temperature = data.list.main.temp;
+    // const windSpeed = data.list.wind.speed;
+    // const humidity = data.list.main.humidity;
+
+    const date = new Date(data.dt * 1000).toLocaleDateString();
+    const iconUrl = `http://openweathermap.org/img/w/${data.list.weather.icon}.png`;
+    document.getElementById("icon1").innerHTML = `<img src="${iconUrl}">`;
+    document.getElementById("temp1").textContent = data.list.main.temp;
+    document.getElementById("wind1").textContent = data.list.wind.speed;
+    document.getElementById("humidity1").textContent = data.list.main.humidity;
   }
 }
