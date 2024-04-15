@@ -135,30 +135,37 @@ function getFiveDayForecast(lat, lon) {
       displayFiveDayForecast(data);
       localStorage.setItem("fiveDayData", JSON.stringify(data));
     })
-    // .catch(function (error) {
-    //   console.log(
-    //     "There has been a problem with your fetch operation: ",
-    //     error.message
-    //   );
-    // });
+    .catch(function (error) {
+      console.log(
+        "There has been a problem with your fetch operation: ",
+        error.message
+      );
+    });
 }
 // Function to display the weather data for the city
 function displayFiveDayForecast(data) {
-  // Get ids and set content for the 5 day forecast
-  console.log(data);
+  // Get the list of forecasts from the response data
+  const forecasts = data.list;
+
   // For loop to display the 5 day forecast
   for (let i = 0; i < 5; i++) {
-    // const date = new Date(data[i].dt * 1000).toLocaleDateString();
-    // const iconUrl = `http://openweathermap.org/img/w/${data[i].list.weather[0].icon}.png`;
-    // const temperature = data.list.main.temp;
-    // const windSpeed = data.list.wind.speed;
-    // const humidity = data.list.main.humidity;
+    // Get the forecast data for the current day
+    const forecast = forecasts[i];
+    
+    // Extract the relevant information for display
+    const date = new Date(forecast.dt * 1000).toLocaleDateString();
+    const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+    const temperature = forecast.main.temp;
+    const windSpeed = forecast.wind.speed;
+    const humidity = forecast.main.humidity;
 
-    const date = new Date(data.dt * 1000).toLocaleDateString();
-    const iconUrl = `http://openweathermap.org/img/w/${data.list.weather.icon}.png`;
-    document.getElementById("icon1").innerHTML = `<img src="${iconUrl}">`;
-    document.getElementById("temp1").textContent = data.list.main.temp;
-    document.getElementById("wind1").textContent = data.list.wind.speed;
-    document.getElementById("humidity1").textContent = data.list.main.humidity;
+    // Set the content for each forecast card
+    document.getElementById(`icon${i + 1}`).innerHTML = `<img src="${iconUrl}">`;
+    console.log(iconUrl);
+    document.getElementById(`date${i + 1}`).textContent = date;
+    document.getElementById(`temp${i + 1}`).textContent = temperature;
+    document.getElementById(`wind${i + 1}`).textContent = windSpeed;
+    document.getElementById(`humidity${i + 1}`).textContent = humidity;
   }
 }
+displaySavedCities();
