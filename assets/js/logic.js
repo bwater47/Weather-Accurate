@@ -32,8 +32,7 @@ document
 // API key for OpenWeatherMap and fetch the url with the city variable and API key variable
 function getWeatherData(city) {
   // API Key which allows us to make request to the server.
-  const queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`; // Geo coordinates for the city (lat and lon)
-
+  const queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
   // Fetch the data from the API
   fetch(queryURL)
     .then(function (response) {
@@ -41,39 +40,16 @@ function getWeatherData(city) {
     })
     // Display the data in console
     .then(function (data) {
-      // make variables for the lat and lon from the data and run a second fetch to get the 5 day forecast using the lat and lon
-      // create query url for the 5 day forecast
-      // Move the function below into the second fetch
-      displayFiveDayForecast(data);
-      // Save the city to local storage so it persists on page reload
-      saveCity(city); // Save the searched city to the past searches local storage array
+      // Save the searched city to the past searches local storage array
+      saveCity(city);
       // Render after page reload
-      displaySavedCities(); // Displays the past searches
+      displaySavedCities();
       // Display the current weather data
       displayDailyForecast(data, city);
       // Set the current city name and data to local storage
       localStorage.setItem("cityName", city);
       localStorage.setItem("currentData", JSON.stringify(data));
-      // localStorage.setItem("DailyData", JSON.stringify(data.list[0]));
     });
-}
-
-// Function to display the weather data for the city
-function displayFiveDayForecast(data) {
-  // Get ids and set content for the 5 day forecast
-  // For loop to display the 5 day forecast
-  for (let i = 0; i < data.length; i++) {
-    document.getElementById("date1").textContent[i] = new Date(
-      data.dt * 1000
-    ).toLocaleDateString();
-    document.getElementById(
-      "icon1"
-    ).src = `http://openweathermap.org/img/w/${data.weather[i].icon}.png`;
-    document.getElementById("temp1").textContent[i] = data.main.temp;
-    document.getElementById("wind1").textContent[i] = data.wind.speed;
-    document.getElementById("humidity1").textContent[i] = data.main.humidity;
-    // console.log(data);
-  }
 }
 
 // Function to display the current day data
@@ -103,35 +79,35 @@ function displaySavedCities() {
   });
 }
 
-// Get the data from the API
-function getDailyForecast(city) {
-  // API Key which allows us to make request to the server.
-  const dailyDayURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-  // Fetch the data from the API
-  fetch(dailyDayURL)
-    // Check if the response is ok
-    .then(function (response) {
-      if (!response.ok) {
-        throw new Error(
-          `HTTP error! status: ${response.status} ${response.statusText}`
-        );
-      }
-      // Parse the response using the json method
-      return response.json();
-    })
-    // Display the data in the console
-    .then(function (data) {
-      console.log(data);
-      localStorage.setItem("weatherData", JSON.stringify(data));
-    })
-    // Display an error message if there is a problem with the fetch operation
-    .catch(function (error) {
-      console.log(
-        "There has been a problem with your fetch operation: ",
-        error.message
-      );
-    });
-}
+// // Get the data from the API
+// function getDailyForecast(city) {
+//   // API Key which allows us to make request to the server.
+//   const dailyDayURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+//   // Fetch the data from the API
+//   fetch(dailyDayURL)
+//     // Check if the response is ok
+//     .then(function (response) {
+//       if (!response.ok) {
+//         throw new Error(
+//           `HTTP error! status: ${response.status} ${response.statusText}`
+//         );
+//       }
+//       // Parse the response using the json method
+//       return response.json();
+//     })
+//     // Display the data in the console
+//     .then(function (data) {
+//       console.log(data);
+//       localStorage.setItem("weatherData", JSON.stringify(data));
+//     })
+//     // Display an error message if there is a problem with the fetch operation
+//     .catch(function (error) {
+//       console.log(
+//         "There has been a problem with your fetch operation: ",
+//         error.message
+//       );
+//     });
+// }
 
 // Display the data on the page
 function displayDailyForecast(data, city) {
@@ -144,24 +120,39 @@ function displayDailyForecast(data, city) {
   document.getElementById("temperature").textContent = data.main.temp;
   document.getElementById("windspeed").textContent = data.wind.speed;
   document.getElementById("humiditynumber").textContent = data.main.humidity;
-  // localStorage.setItem("data")
 }
 
 // Get details from lat and lon make variables
-function getFiveDayForecast(lat, lon){
+function getFiveDayForecast(lat, lon) {
   const fiveDayURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
   fetch(fiveDayURL)
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(data){
-    console.log(data);
-    localStorage.setItem("fiveDayData", JSON.stringify(data));
-  })
-  .catch(function(error){
-    console.log(
-      "There has been a problem with your fetch operation: ",
-      error.message
-    );
-  });
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      displayFiveDayForecast(data);
+      localStorage.setItem("fiveDayData", JSON.stringify(data));
+    })
+    .catch(function (error) {
+      console.log(
+        "There has been a problem with your fetch operation: ",
+        error.message
+      );
+    });
+}
+// Function to display the weather data for the city
+function displayFiveDayForecast(data) {
+  // Get ids and set content for the 5 day forecast
+  // For loop to display the 5 day forecast
+  for (let i = 0; i < data.length; i++) {
+    document.getElementById("date1").textContent[i] = new Date(
+      data.dt * 1000
+    ).toLocaleDateString();
+    document.getElementById(
+      "icon1"
+    ).src = `http://openweathermap.org/img/w/${data.weather[i].icon}.png`;
+    document.getElementById("temp1").textContent[i] = data.main.temp;
+    document.getElementById("wind1").textContent[i] = data.wind.speed;
+    document.getElementById("humidity1").textContent[i] = data.main.humidity;
+  }
 }
