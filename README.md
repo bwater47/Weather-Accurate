@@ -10,9 +10,10 @@ Shields.io
 ## Visuals
 Link: <a href="https://bwater47.github.io/Weather-Accurate/" alt="live site link">Live Link</a>
 
-![img](./assets/images/Modal.png)
-![img](./assets/images/Tasks.png)
-![img](./assets/images/DeletedTasks.png)
+![img](./assets/images/Blank.png)
+![img](./assets/images/Searched.png)
+![img](./assets/images/Re-Searched.png)
+![img](./assets/images/Refreshed.png)
 
 ## Installation
 N/A
