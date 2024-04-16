@@ -1,8 +1,10 @@
-# Weather-Dashboard
-Making a to-do task list with this site is easier than ever with our new layout.
+# Weather-Accurate
+Searching for the weather forecast hasn't been this easy before. You can now see a full five day forecast so you can plan your trips accordingly.
 
 ## Description
-A weather service that you can use that will provide you with the latest updates on the weather near you! You can even search for the status of weather that is far away.
+Welcome to WeatherAccurate, your ultimate weather companion for staying informed and prepared, no matter where your adventures take you. With WeatherAccurate, you have instant access to the latest weather updates for your current location and any destination around the globe. Say goodbye to unexpected weather surprises and hello to hassle-free planning!
+
+Plan your day, week, or even your next vacation with confidence using WeatherAccurate's comprehensive five-day forecast feature. Whether you're exploring local attractions or embarking on a journey to far-off lands, WeatherAccurate ensures you're always one step ahead of the elements. Don't let weather uncertainty hold you back – embrace the freedom of informed decision-making with WeatherAccurate today!
 
 ## Badges
 Shields.io
@@ -19,7 +21,13 @@ Link: <a href="https://bwater47.github.io/Weather-Accurate/" alt="live site link
 N/A
 
 ## Usage
-You can use this site to search for weather near you using a google api.
+Current Weather: Get real-time updates on the current weather conditions for any location.
+
+Five Day Forecast: Plan your trips effectively with a full five-day forecast, including temperature, wind speed, and humidity.
+
+Search Functionality: Easily search for the weather forecast of any location, whether it's your hometown or a destination halfway around the world.
+
+User-friendly Interface: WeatherAccurate features a simple and intuitive interface, making it easy for anyone to use.
 
 ## Support
 You can contact support through email by emailing brennw47@gmail.com.
