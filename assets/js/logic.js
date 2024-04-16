@@ -115,10 +115,10 @@ function displaySavedCities() {
 function displayDailyForecast(data, city) {
   // Get the ids and set the text content for the current weather data
   const date = new Date(data.dt * 1000).toLocaleDateString();
-  const iconUrl = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+  const iconDay = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
   document.getElementById(
     "dailyName"
-  ).innerHTML = `${city} (${date}) <img src="${iconUrl}">`;
+  ).innerHTML = `${city} (${date}) <img src="${iconDay}">`;
   document.getElementById("temperature").textContent = data.main.temp;
   document.getElementById("windspeed").textContent = data.wind.speed;
   document.getElementById("humiditydaily").textContent = data.main.humidity;
@@ -147,25 +147,25 @@ function displayFiveDayForecast(data) {
   // Get the list of forecasts from the response data
   const forecasts = data.list;
 
-  // For loop to display the 5 day forecast
+  // Iterate through the next five days' forecasts
   for (let i = 0; i < 5; i++) {
     // Get the forecast data for the current day
     const forecast = forecasts[i];
     
     // Extract the relevant information for display
-    const date = new Date(forecast.dt * 1000).toLocaleDateString();
+    const date = new Date(Date.now() + (i * 24 * 60 * 60 * 1000)).toLocaleDateString();
     const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
     const temperature = forecast.main.temp;
     const windSpeed = forecast.wind.speed;
     const humidity = forecast.main.humidity;
 
     // Set the content for each forecast card
-    document.getElementById(`icon${i + 1}`).innerHTML = `<img src="${iconUrl}">`;
-    console.log(iconUrl);
+    document.getElementById(`icon${i + 1}`).setAttribute("src", iconUrl);
     document.getElementById(`date${i + 1}`).textContent = date;
     document.getElementById(`temp${i + 1}`).textContent = temperature;
     document.getElementById(`wind${i + 1}`).textContent = windSpeed;
     document.getElementById(`humidity${i + 1}`).textContent = humidity;
   }
 }
+
 displaySavedCities();
