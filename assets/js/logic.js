@@ -24,7 +24,7 @@ document
 // API key for OpenWeatherMap and fetch the url with the city variable and API key variable
 function getWeatherData(city) {
   // API Key which allows us to make request to the server.
-  const queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
+  const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
   // Fetch the data from the API
   fetch(queryURL)
     .then(function (response) {
@@ -85,7 +85,7 @@ function displaySavedCities() {
 function displayDailyForecast(data, city) {
   // Set the date and iconDay variables
   const date = new Date(data.dt * 1000).toLocaleDateString();
-  const iconDay = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+  const iconDay = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
   document.getElementById(
     "dailyName"
     // Add the city name, date, and icon to the header tag
@@ -99,7 +99,7 @@ function displayDailyForecast(data, city) {
 // Get details from lat and lon make variables
 function getFiveDayForecast(lat, lon) {
   // API Key which allows us to make request to the server.
-  const fiveDayURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+  const fiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
   // Fetch the data from the Five Day Forecast API
   fetch(fiveDayURL)
     .then(function (response) {
@@ -130,7 +130,7 @@ function displayFiveDayForecast(data) {
     
     // Extract the relevant information for display
     const date = new Date(Date.now() + (i * 24 * 60 * 60 * 1000)).toLocaleDateString();
-    const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
+    const iconUrl = `https://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
     // Sets the temperaute to farhenheit by using the kelvin to farenheight function which returns the farenheight variable
     const temperature = kelvinToFahrenheit(forecast.main.temp);
     const windSpeed = forecast.wind.speed;
