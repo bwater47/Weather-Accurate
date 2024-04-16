@@ -1,22 +1,14 @@
-// q: The query parameter, where we'll add the city variable. appid: The application id or key, where we'll add the API key variable.
-//https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} API call for openweathermap by city name
-//https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key} API call for openweathermap by city name and country code
-// API key for OpenWeatherMap although API is randomly generated
-// Yes when variables are assigned we will click the search button and the event listener will be triggered  and the function will call the variables to be displayed spliced concatted.
-// let city = "";
-// let country = "";
-// let temp = "";
-// let wind = "";
-// let humidity = "";
-// API key for OpenWeatherMap
+// API key for OpenWeatherMap Data
 const APIKey = "dd699e84055222330cd4dae0d505a590";
-// Event listener for search button
+// Event listener for search button to get the city name
 document
   .getElementById("searchCity")
   .addEventListener("submit", function (event) {
     // Prevent the default form submission
     event.preventDefault();
+    // Get the city name from the input field
     const cityInput = document.getElementById("cityInput");
+    // Trim the city name to remove any extra spaces
     const city = cityInput.value.trim();
     // If the user enters a city name, fetch the weather forecast for that city
     if (city !== "") {
@@ -56,7 +48,9 @@ function getWeatherData(city) {
 
 // Function to display the current day data
 function saveCity(city) {
+  // Get the saved cities from local storage
   let savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+  // If the city is not already saved, add it to the saved cities array
   if (!savedCities.includes(city)) {
     savedCities.push(city);
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
@@ -65,60 +59,38 @@ function saveCity(city) {
 
 // Function to display the saved cities on the page in the search history
 function displaySavedCities() {
+  // Get the saved cities from local storage
   const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+  // Get the container where the saved cities will be displayed
   const savedCitiesContainer = document.querySelector(".savedCities");
-  // Clear the existing buttons
+  // Clear the created buttons for the cities that have been saved to the search history when clicked again so there isnt another button created
   savedCitiesContainer.innerHTML = "";
-  // Create a button for each saved city
+  // Create a button for each city that has been searched and saved
   savedCities.forEach((city) => {
+    // Create a button element for the city
     const button = document.createElement("button");
+    // Add the classes and event listener to the button
     button.classList.add("btn", "btn-secondary");
+    // Attach the event listener to the button so that when clicked, the weather data for that city is displayed
     button.addEventListener("click", function () {
       getWeatherData(city);
     });
+    // Set the text content of the button to the city name
     button.textContent = city;
     savedCitiesContainer.appendChild(button);
   });
 }
 
-// // Get the data from the API
-// function getDailyForecast(city) {
-//   // API Key which allows us to make request to the server.
-//   const dailyDayURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-//   // Fetch the data from the API
-//   fetch(dailyDayURL)
-//     // Check if the response is ok
-//     .then(function (response) {
-//       if (!response.ok) {
-//         throw new Error(
-//           `HTTP error! status: ${response.status} ${response.statusText}`
-//         );
-//       }
-//       // Parse the response using the json method
-//       return response.json();
-//     })
-//     // Display the data in the console
-//     .then(function (data) {
-//       console.log(data);
-//       localStorage.setItem("weatherData", JSON.stringify(data));
-//     })
-//     // Display an error message if there is a problem with the fetch operation
-//     .catch(function (error) {
-//       console.log(
-//         "There has been a problem with your fetch operation: ",
-//         error.message
-//       );
-//     });
-// }
-
 // Display the data on the page
 function displayDailyForecast(data, city) {
-  // Get the ids and set the text content for the current weather data
+  // Set the date and iconDay variables
   const date = new Date(data.dt * 1000).toLocaleDateString();
   const iconDay = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
   document.getElementById(
     "dailyName"
+    // Add the city name, date, and icon to the header tag
   ).innerHTML = `${city} (${date}) <img src="${iconDay}">`;
+  // Set the temperature, wind speed, and humidity by using the get element by id method
   document.getElementById("temperature").textContent = data.main.temp;
   document.getElementById("windspeed").textContent = data.wind.speed;
   document.getElementById("humiditydaily").textContent = data.main.humidity;
@@ -126,15 +98,19 @@ function displayDailyForecast(data, city) {
 
 // Get details from lat and lon make variables
 function getFiveDayForecast(lat, lon) {
+  // API Key which allows us to make request to the server.
   const fiveDayURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+  // Fetch the data from the Five Day Forecast API
   fetch(fiveDayURL)
     .then(function (response) {
       return response.json();
     })
+    // Display the data in the console and set the data to local storage
     .then(function (data) {
       displayFiveDayForecast(data);
       localStorage.setItem("fiveDayData", JSON.stringify(data));
     })
+    // Catch any errors that may occur
     .catch(function (error) {
       console.log(
         "There has been a problem with your fetch operation: ",
@@ -167,5 +143,5 @@ function displayFiveDayForecast(data) {
     document.getElementById(`humidity${i + 1}`).textContent = humidity;
   }
 }
-
+// Render the saved cities buttons onto the page after the page reloads
 displaySavedCities();
