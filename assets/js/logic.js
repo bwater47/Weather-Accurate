@@ -23,7 +23,7 @@ document
 
 // API key for OpenWeatherMap and fetch the url with the city variable and API key variable
 function getWeatherData(city) {
-  // API Key which allows us to make request to the server.
+  // API Key which allows us to make request to the secure server.
   const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
   // Fetch the data from the API
   fetch(queryURL)
