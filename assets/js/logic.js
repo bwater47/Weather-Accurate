@@ -91,7 +91,7 @@ function displayDailyForecast(data, city) {
     // Add the city name, date, and icon to the header tag
   ).innerHTML = `${city} (${date}) <img src="${iconDay}">`;
   // Set the temperature, wind speed, and humidity by using the get element by id method
-  document.getElementById("temperature").textContent = data.main.temp;
+  document.getElementById("temperature").textContent = kelvinToFahrenheit(data.main.temp);
   document.getElementById("windspeed").textContent = data.wind.speed;
   document.getElementById("humiditydaily").textContent = data.main.humidity;
 }
@@ -131,7 +131,8 @@ function displayFiveDayForecast(data) {
     // Extract the relevant information for display
     const date = new Date(Date.now() + (i * 24 * 60 * 60 * 1000)).toLocaleDateString();
     const iconUrl = `http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`;
-    const temperature = forecast.main.temp;
+    // Sets the temperaute to farhenheit by using the kelvin to farenheight function which returns the farenheight variable
+    const temperature = kelvinToFahrenheit(forecast.main.temp);
     const windSpeed = forecast.wind.speed;
     const humidity = forecast.main.humidity;
 
@@ -142,6 +143,14 @@ function displayFiveDayForecast(data) {
     document.getElementById(`wind${i + 1}`).textContent = windSpeed;
     document.getElementById(`humidity${i + 1}`).textContent = humidity;
   }
+}
+
+// Change the temperatures from Kelvin to Fahrenheit
+function kelvinToFahrenheit(temp) {
+  // Variable for farenheight formula
+  const fahrenheit = ((temp - 273.15) * 9) / 5 + 32;
+  // Return the farenheight variable to the function
+  return fahrenheit.toFixed(2);
 }
 // Render the saved cities buttons onto the page after the page reloads
 displaySavedCities();
